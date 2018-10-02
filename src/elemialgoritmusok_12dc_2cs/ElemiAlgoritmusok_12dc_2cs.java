@@ -192,4 +192,31 @@ public class ElemiAlgoritmusok_12dc_2cs {
         
         return halmazKiválogatás(összefuttatás(egyik,másik));
     }
+    
+    static int [] metszet(int [] egyik, int [] másik){
+        int strázsa =0;
+        /*
+        if a kisebb méretû tömb keresésére
+        */
+        int [] result = new int[egyik.length];
+        for(int i=0;i<egyik.length; i++)
+            if(contains(másik, egyik[i]))
+                result[strázsa++] = egyik[i];
+        int [] temp = new int[strázsa];
+        strázsa = 0;
+        for(int i=0; i<temp.length; i++)
+            temp[strázsa++] = result[i];
+        return temp;
+    }
+    
+    static int [] különbség(int [] egyik, int [] másik){
+        //egyik \ másik
+        int [] metszet = metszet(egyik,másik);
+        int [] result = new int [egyik.length-metszet.length];
+        int strázsa = 0;
+        for(int elem: egyik)
+            if( !contains(metszet,elem) )
+                result[strázsa++] = elem;
+        return result;
+    }
 }
